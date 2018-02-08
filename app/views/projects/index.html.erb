@@ -1,0 +1,8 @@
+<h1>Projects</h1>
+
+<% for project in @projects %>
+  <%= project.name %>
+  <% for task in project.tasks %>
+    <%= task.name %>
+  <% end %>
+<% end %>

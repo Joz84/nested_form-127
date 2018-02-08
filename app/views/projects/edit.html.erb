@@ -1,0 +1,23 @@
+<h1>New Project</h1>
+<%= simple_form_for @project do |f| %>
+  Name: <%= f.text_field :name %>
+  <% @project.tasks.each do |task| %>
+    <%= f.fields_for :tasks, task do |task| %>
+      <p>
+        Task: <%= task.text_field :name %>
+        <%= task.check_box :_destroy %>
+        <%= task.label :_destroy, "Remove Task" %>
+      </p>
+    <% end %>
+  <% end %>
+  <div id="tasks">
+    <%= f.simple_fields_for :tasks, Task.new do |task| %>
+      <div class="links">
+        <%= link_to_add_association 'add task', f, :tasks %>
+      </div>
+    <% end %>
+  </div>
+  <%= f.submit 'Create Project' %>
+<% end %>
+
+
